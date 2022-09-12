@@ -20,3 +20,13 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'skp-docker'
+    command: 'login'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'skp-docker'
+    repository: 'pshivakumar443/devops'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
